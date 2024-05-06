@@ -17,35 +17,35 @@ from utils import load_model, infer_uploaded_image, infer_uploaded_video, infer_
 
 # setting page layout
 st.set_page_config(
-    page_title="Interactive Interface for YOLOv8",
+    page_title="红外行人车辆检测识别",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
     )
 
 # main page heading
-st.title("Interactive Interface for YOLOv8")
+st.title("红外行人车辆检测识别")
 
 # sidebar
-st.sidebar.header("DL Model Config")
+st.sidebar.header("模型参数")
 
 # model options
 task_type = st.sidebar.selectbox(
-    "Select Task",
+    "选择任务类型",
     ["Detection"]
 )
 
 model_type = None
 if task_type == "Detection":
     model_type = st.sidebar.selectbox(
-        "Select Model",
+        "选择模型",
         config.DETECTION_MODEL_LIST
     )
 else:
     st.error("Currently only 'Detection' function is implemented")
 
 confidence = float(st.sidebar.slider(
-    "Select Model Confidence", 30, 100, 50)) / 100
+    "选择模型置信度", 30, 100, 50)) / 100
 
 model_path = ""
 if model_type:
@@ -62,7 +62,7 @@ except Exception as e:
 # image/video options
 st.sidebar.header("Image/Video Config")
 source_selectbox = st.sidebar.selectbox(
-    "Select Source",
+    "选择检测源",
     config.SOURCES_LIST
 )
 
